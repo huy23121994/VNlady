@@ -6,11 +6,11 @@
 @section('main')
 	@include('frontend.layouts.header')
 
-	<section class="container">
+	<section class="container" id="show-item">
 		<div class="row">
-			<div class="col-sm-8">
-				<div>
-					<h3>{{$item['title']}}</h3>
+			<div class="col-sm-8 left-content">
+				<div class="row header">
+					<h4>{{$item['title']}}</h4>
 					<p>{{$item['created_at']}}</p>
 				</div>
 				<div class="h_iframe">
@@ -18,13 +18,13 @@
 	        		<iframe src="{{$item['embed_link']}}" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 right-content">
 				<div>
-					<p>Description</p>
+					<h5>Description</h5>
 					<p>{{$item['description']}}</p>
 				</div>
 				<div>
-					<p>Category</p>
+					<h5>Category</h5>
 					@foreach($item->categories as $category)
 						<a href="{{url('category/'.$category['id'])}}">{{$category['category']}} </a>
 					@endforeach

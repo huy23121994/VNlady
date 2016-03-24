@@ -1,7 +1,7 @@
 @extends('master')
 @section('title','VN LADY')
 @section('css')
-	<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 @endsection
 @section('main')
 	@include('frontend.layouts.header')
@@ -12,8 +12,8 @@
 @endsection
 
 @section('js')
-	<script type="text/javascript" src="{{url('js/masonry.pkgd.min.js')}}"></script>
-	<script type="text/javascript" src="{{url('js/imagesloaded.pkgd.min.js')}}"></script>
+	<script type="text/javascript" src="/js/masonry.pkgd.min.js"></script>
+	<script type="text/javascript" src="/js/imagesloaded.pkgd.min.js"></script>
 	<script type="text/javascript">
 		$('section').imagesLoaded( function() {
 		  	$('.grid').masonry({

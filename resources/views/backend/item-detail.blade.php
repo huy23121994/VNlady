@@ -5,12 +5,12 @@
 @section('css')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="{{url('css/backend/dist/skins/skin-blue.min.css')}}">
+	<link rel="stylesheet" href="/css/backend/dist/skins/skin-blue.min.css">
 	<!-- Select2  -->
-	<link rel="stylesheet" href="{{url('css/backend/plugins/select2.min.css')}}">
+	<link rel="stylesheet" href="/css/backend/plugins/select2.min.css">
 	<!-- DataTables  -->
-	<link rel="stylesheet" href="{{url('css/backend/plugins/datatables/dataTables.bootstrap.css')}}">
-	<link rel="stylesheet" href="{{url('css/backend/dist/AdminLTE.min.css')}}">
+	<link rel="stylesheet" href="/css/backend/plugins/datatables/dataTables.bootstrap.css">
+	<link rel="stylesheet" href="/css/backend/dist/AdminLTE.min.css">
 @endsection
 
 @section('body-class','skin-blue sidebar-mini')
@@ -37,19 +37,20 @@
 			                <form action="{{url('manager/item/'.$item['id'].'/update')}}" id="upload" role="form">
 								<div class="box-body">
 									<div class="form-group">
-										<label>Title</label>
-										<input type="text" class="form-control" name="title" value="{{$item['title']}}" placeholder="Enter title" required>
+										<label>Title <small class="error"></small></label>
+										<input type="text" class="form-control" id="title" name="title" value="{{$item['title']}}" placeholder="Enter title" required>
 									</div>
 									<div class="form-group">
-									   <label>Description</label>
-									   <textarea class="form-control" name="description" placeholder="Enter description" required>{{$item['description']}}</textarea>
+									   <label>Description <small class="error"></small></label>
+									   <textarea class="form-control" id="description" name="description" placeholder="Enter description" required>{{$item['description']}}</textarea>
 									</div>
 									<div class="form-group">
-									   <label>Embed link</label>
-									   <input type="text" class="form-control" name="embed_link" value="{{$item['embed_link']}}" placeholder="Enter the embed link" required>
+									   <label>Embed link <small class="error"></small></label>
+									   <input type="url" class="form-control" id="embed_link" name="embed_link" value="{{$item['embed_link']}}" placeholder="Enter the embed link" required>
 									</div>
 									<div class="form-group">
-										<label>Category</label>
+										<label>Category <small class="error"></small></label>
+										<input type="hidden" id="categories"></input>
 										<select class="form-control select2 select2-hidden-accessible" name="categories[]" multiple data-placeholder="Select category" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
 									      	<option value="1">Fashion</option>
 									      	<option value="2">Makeup</option>
@@ -61,9 +62,9 @@
 									    </select>
 									</div>
 									<div class="form-group">
-										<label for="img">Image preview</label>
-										<img class="show margin-bottom" src="{{url($item['img_preview'])}}" alt="{{$item['title']}}" width="196px">
-										<input type="file" name="img">
+										<label for="img">Image preview <small class="error"></small></label>
+										<img class="show margin-bottom img_preview" src="{{url($item['img_preview'])}}" alt="{{$item['title']}}" width="196px">
+										<input type="file" name="img" id="img">
 										<p class="help-block">Click button to choose image from your device</p>
 									</div>
 								</div><!-- /.box-body -->
@@ -126,6 +127,22 @@
 					alert('Update success!');
 				}else{
 					alert('Update fail!');
+					var errors =$.parseJSON(data);
+					$('small.error').html('');
+					function adderror(input,val){
+						var input_selector = $('#'+ input );
+						input_selector.siblings('label').find('small')
+									.html(val)
+									.css({'color':'#dd4b39','font-weight':'normal'});
+					}
+
+					$.each(errors, function(key,val){
+						if (key == 'title') adderror('title',val);
+						if (key == 'description') adderror('description',val);
+						if (key == 'embed_link') adderror('embed_link',val);
+						if (key == 'categories') adderror('categories',val);
+						if (key == 'img') adderror('img',val);
+					})
 				}
 			}).fail(function(){
 				alert('Loi server');
@@ -137,6 +154,26 @@
 			//Initialize Select2 Elements
         	$(".select2").select2();
 
+        	/* Change images before upload */
+        	$('#img').on('change',function(){
+                readURL(this,'.img_preview'); 
+            })
+
+            function readURL(input,selector) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (theFile) {
+                        var image = new Image();
+                        image.src = theFile.target.result;
+                        image.onload = function() {
+                            $(selector).attr('src', this.src);
+                     
+                        };
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            /* END change image*/
 	    });
     
 	</script>

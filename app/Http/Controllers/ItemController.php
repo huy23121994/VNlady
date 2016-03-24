@@ -6,6 +6,8 @@ use App\Items;
 
 use App\Ic_relations;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,18 +19,30 @@ class ItemController extends Controller{
             $items = Items::all();
             return view('backend/item')->with('items',$items);
         }
-        return 'Ko co quyen truy cap';
+        return redirect('/');
         
     }
 
-    public function getCreate(){
+    // public function getCreate(){
         
-    }
+    // }
 
     public function postStore(Request $request){
         $data = $request->all();
-        if ($request->hasFile('img')) {
 
+        $validator = Validator::make($data,
+            [
+                'title' => 'required|max:255',
+                'description' => 'required|max:1000',
+                'embed_link' => 'required|URL|max:255',
+                'categories' => 'required',
+                'img' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $errors = $validator->messages();
+            echo json_encode($errors);
+        }elseif ($request->hasFile('img')) {
             $name=uniqid().'.jpg';
             $file = $data['img'];
             $file->move('img/upload',$name);
@@ -52,9 +66,6 @@ class ItemController extends Controller{
         }
     }
 
-    public function show($id){
-    }
-
     public function Edit($id){
         $item = Items::find($id);
         return view('backend/item-detail')->with('item',$item);
@@ -62,35 +73,49 @@ class ItemController extends Controller{
 
     public function Update(Request $request, $id){
         $data = $request->all();
-        $item = Items::find($id);
-        $item->title = $data['title'];
-        $item->description = $data['description'];
-        $item->embed_link = $data['embed_link'];
-        if ($request->hasFile('img')) {
-            $name = uniqid().'jpg';
-            $file = $data['img'];
-            $file->move('img/upload',$name);
-            $item->img_preview = 'img/upload/'.$name;
-        }
-        $item->save();
 
-        $relation = Ic_relations::where('item_id',$id)->delete();
-        foreach ($data['categories'] as $category) {
-            $relation = new Ic_relations;
-            $relation->item_id = $id;
-            $relation->category_id = $category;
-            $relation->save();
-        }
-        if ($item and $relation) {
-            echo "success";
+        $validator = Validator::make($data,
+            [
+                'title' => 'required|max:255',
+                'description' => 'required|max:1000',
+                'embed_link' => 'required|URL|max:255',
+                'categories' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $errors = $validator->messages();
+            echo json_encode($errors);
         }else{
-            echo "fail";
+            $item = Items::find($id);
+            $item->title = $data['title'];
+            $item->description = $data['description'];
+            $item->embed_link = $data['embed_link'];
+            if ($request->hasFile('img')) {
+                $name = uniqid().'jpg';
+                $file = $data['img'];
+                $file->move('img/upload',$name);
+                $item->img_preview = 'img/upload/'.$name;
+            }
+            $item->save();
+
+            $relation = Ic_relations::where('item_id',$id)->delete();
+            foreach ($data['categories'] as $category) {
+                $relation = new Ic_relations;
+                $relation->item_id = $id;
+                $relation->category_id = $category;
+                $relation->save();
+            }
+            if ($item and $relation) {
+                echo "success";
+            }else{
+                echo "fail";
+            }
         }
     }
 
     public function getDestroy($id){
-        $item = Items::find($id)->delete();
         $relation = Ic_relations::where('item_id',$id)->delete();
+        $item = Items::find($id)->delete();
         return redirect('/manager/item');
     }
 }

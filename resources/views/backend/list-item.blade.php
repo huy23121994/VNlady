@@ -4,8 +4,8 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Created Time</th>
-                <th>Updated Time</th>
+                <th width="127px">Created Time</th>
+                <th width="127px">Updated Time</th>
             </tr>
         </thead>
         <tfoot>
@@ -20,7 +20,7 @@
         @foreach($items as $item)
             <tr>
                 <td><a href="{{url('manager/item/'.$item['id'].'/edit')}}">{{$item['title']}}</a></td>
-                <td width="40%">{{substr($item['description'], 0,100).' ...' }}</td>
+                <td>{{substr($item['description'], 0,100).' ...' }}</td>
                 <td>{{$item['created_at']}}</td>
                 <td>{{$item['updated_at']}}</td>
             </tr>

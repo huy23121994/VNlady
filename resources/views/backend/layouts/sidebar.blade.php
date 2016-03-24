@@ -6,7 +6,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="{{url('img/backend/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+              <img src="/img/backend/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p>Hello Admin's VNLady</p>
@@ -32,12 +32,12 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active">
               <a href="{{url('manager/item')}}">
-                <i class="fa fa-dashboard"></i> <span>Items</span>
+                <i class="fa fa-video-camera"></i> <span>Items</span>
               </a>
             </li>
             <li>
               <a href="{{url('manager/category')}}">
-                <i class="fa fa-dashboard"></i> <span>Categoies</span>
+                <i class="fa fa-gavel"></i> <span>Categoies</span>
               </a>
             </li>
           </ul><!-- /.sidebar-menu -->
