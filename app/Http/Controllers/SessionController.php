@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
 use App\User;
+use Validator;
 
 use Illuminate\Http\Request;
 
@@ -13,20 +13,36 @@ class SessionController extends Controller
 {
     public function getIndex(Request $request){
     	if ($request->session()->has('admin')) {
-    		return redirect('/manager/item#upload');
+    		return redirect('/manager/item');
     	}
         return view('backend/sign-in');
     }
 
     public function postSignin(Request $request){
     	$data = $request->all();
-    	$admin = User::where('account','admin')->first();
-    	if ($data['account']==$admin['account'] and $data['password']==$admin['password']) {
-    		session(['admin'=>'vnlady']);
-    		return redirect('/manager/item');
-    	}else{
-    		echo "string";
-    	}
+        $validator = Validator::make($data,
+            [
+                'account'=>'required',
+                'password'=>'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $errors = $validator->messages();
+            echo json_encode($errors);
+        }else{
+            $admin = User::where('account',$data['account'])->first();
+            if ($admin) {
+                if ($data['password']==$admin['password']) {
+                    session(['admin'=>'vnlady']);
+                    echo "success";
+                }else{
+                    echo "fail: incorrect password";
+                }
+            }else{
+                echo "fail: Not exists user";
+            }
+        }
+
     }
 
     public function getSignout(Request $request){
