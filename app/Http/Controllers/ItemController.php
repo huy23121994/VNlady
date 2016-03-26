@@ -16,7 +16,7 @@ class ItemController extends Controller{
 
     public function getIndex(Request $request){
         if ($request->session()->has('admin')) {
-            $items = Items::all();
+            $items = Items::all()->sortByDesc('created_at');
             return view('backend/item')->with('items',$items);
         }
         return redirect('/');
@@ -91,7 +91,7 @@ class ItemController extends Controller{
             $item->description = $data['description'];
             $item->embed_link = $data['embed_link'];
             if ($request->hasFile('img')) {
-                $name = uniqid().'jpg';
+                $name = uniqid().'.jpg';
                 $file = $data['img'];
                 $file->move('img/upload',$name);
                 $item->img_preview = 'img/upload/'.$name;

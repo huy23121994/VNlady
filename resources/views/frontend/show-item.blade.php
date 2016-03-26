@@ -1,9 +1,37 @@
+<?php
+	$category = $item->categories->first();
+	$count = $category->items->count();
+	if ($count<5) {
+		$items_relate = $category->items->random($count);
+	}else{
+		$items_relate = $category->items->random(5);
+	}
+	
+?>
 @extends('master')
 @section('title','Title - VN LADY')
 @section('css')
 	<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
 @endsection
 @section('main')
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '855030641283448',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 	@include('frontend.layouts.header')
 
 	<section class="container" id="show-item">
@@ -17,6 +45,13 @@
 					<img class="ratio" src="http://placehold.it/16x9"/>
 	        		<iframe src="{{$item['embed_link']}}" frameborder="0" allowfullscreen></iframe>
 				</div>
+				<div
+				  class="fb-like"
+				  data-share="true"
+				  data-width="450"
+				  data-show-faces="true">
+				</div>
+				<div class="fb-comments" data-href="{{url('/item/'.$item['id'])}}" data-width="100%" data-numposts="5"></div>
 			</div>
 			<div class="col-sm-4 right-content">
 				<div>
@@ -25,8 +60,25 @@
 				</div>
 				<div>
 					<h5>Category</h5>
+					<p>
 					@foreach($item->categories as $category)
 						<a href="{{url('category/'.$category['id'])}}">{{$category['category']}} </a>
+					@endforeach
+					</p>
+				</div>
+				<div>
+					<h5>Related Posts</h5>
+					@foreach($items_relate as $item_relate)
+					<div class="media">
+					  	<div class="media-left">
+					    	<a href="{{url('/item/'.$item_relate['id'])}}">
+					      		<img class="media-object" src="{{'/'.$item_relate['img_preview']}}" alt="{{$item_relate['title']}}" width="100">
+					    	</a>
+					  	</div>
+					  	<div class="media-body">
+					    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
+					  	</div>
+					</div>
 					@endforeach
 				</div>
 			</div>

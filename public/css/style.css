@@ -5,9 +5,6 @@
 body{
 	background-color: #F7F7F7;
 }
-img{
-	max-width: 100%;
-}
 .grid-item img{
 	width: 100%;
 }
@@ -107,10 +104,14 @@ section#show-item .right-content>div{
 section#show-item .right-content>div:last-child{
 	border-bottom: none;
 }
-section#show-item .right-content>div h5{
+section#show-item .right-content>div>h5{
 	letter-spacing: 2px;
     color: #757575;
 }
 section#show-item .right-content{
 	color: #3A3A3A;
+}
+section#show-item .right-content .media{
+	color: #BB2156;
+	margin: 20px 0;
 }

@@ -27,7 +27,7 @@ class ViewController extends Controller{
 
     public function getCategory($id){
     	$category = Categories::find($id);
-    	$items = $category->items->sortByDesc('created_at');
+    	$items = $category->items()->orderBy('created_at','desc')->paginate(8);
     	return view('frontend/index')->with('items',$items)
     								 ->with('category',$category);
     }
