@@ -1,5 +1,9 @@
 @extends('master')
-@section('title','VN LADY')
+@if(isset($category))
+	@section('title',$category['category'].'- VNLady')
+@else
+	@section('title','VNLady')
+@endif
 @section('css')
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 @endsection

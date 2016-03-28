@@ -9,29 +9,37 @@
 	
 ?>
 @extends('master')
-@section('title','Title - VN LADY')
+@section('title',$item['title'].' - VNLady')
+
+@section('meta')
+	<meta name="description" content="$item['description']" />
+	<meta name="keywords" content="$item['title']" />
+@endsection
+
 @section('css')
 	<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
 @endsection
+
 @section('main')
+<!-- FOR FACEBOOK API -->
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '855030641283448',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
+  	window.fbAsyncInit = function() {
+    	FB.init({
+      		appId      : '855030641283448',
+      		xfbml      : true,
+      		version    : 'v2.5'
+    	});
+  	};
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+  	(function(d, s, id){
+     	var js, fjs = d.getElementsByTagName(s)[0];
+     	if (d.getElementById(id)) {return;}
+     	js = d.createElement(s); js.id = id;
+     	js.src = "//connect.facebook.net/en_US/sdk.js";
+     	fjs.parentNode.insertBefore(js, fjs);
+   	}(document, 'script', 'facebook-jssdk'));
 </script>
-
+<!-- END FACEBOOK API -->
 	@include('frontend.layouts.header')
 
 	<section class="container" id="show-item">
@@ -76,7 +84,9 @@
 					    	</a>
 					  	</div>
 					  	<div class="media-body">
-					    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
+						  	<a href="{{url('/item/'.$item_relate['id'])}}">
+						    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
+					    	</a>
 					  	</div>
 					</div>
 					@endforeach

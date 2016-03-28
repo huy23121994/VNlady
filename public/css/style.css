@@ -82,6 +82,9 @@ section#show-item > .row{
 	background-color: #fff;
     box-shadow: 0px 2px 7px #BBB;
 }
+section#show-item .left-content{
+	overflow: hidden;
+}
 @media screen and (min-width: 768px){
 	section#show-item .left-content{
 	    border-right: 1px solid #ddd;
@@ -114,4 +117,9 @@ section#show-item .right-content{
 section#show-item .right-content .media{
 	color: #BB2156;
 	margin: 20px 0;
+}
+
+section#show-item .right-content .media a{
+	color: #BB2156;
+	text-decoration: none;
 }

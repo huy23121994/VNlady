@@ -12,7 +12,7 @@ use App\Http\Requests;
 class ViewController extends Controller{
     
     public function getIndex(){
-    	$items = Items::orderBy('created_at','desc')->paginate(8);
+    	$items = Items::orderBy('created_at','desc')->paginate(16);
     	return view('frontend/index')->with('items',$items);
     }
 
@@ -27,7 +27,7 @@ class ViewController extends Controller{
 
     public function getCategory($id){
     	$category = Categories::find($id);
-    	$items = $category->items()->orderBy('created_at','desc')->paginate(8);
+    	$items = $category->items()->orderBy('created_at','desc')->paginate(16);
     	return view('frontend/index')->with('items',$items)
     								 ->with('category',$category);
     }
