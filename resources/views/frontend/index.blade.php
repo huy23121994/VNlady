@@ -4,6 +4,9 @@
 @else
 	@section('title','VNLady')
 @endif
+@section('meta')
+	<meta property="og:image" content="{{url('/img/1457710294.png')}}" />
+@endsection
 @section('css')
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 @endsection

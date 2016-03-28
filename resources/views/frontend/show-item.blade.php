@@ -12,8 +12,9 @@
 @section('title',$item['title'].' - VNLady')
 
 @section('meta')
-	<meta name="description" content="$item['description']" />
-	<meta name="keywords" content="$item['title']" />
+	<meta property="og:description" content="{{$item['description']}}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="{{url($item['img_preview'])}}" />
 @endsection
 
 @section('css')
@@ -56,7 +57,7 @@
 				<div
 				  class="fb-like"
 				  data-share="true"
-				  data-width="450"
+				  data-width="340"
 				  data-show-faces="true">
 				</div>
 				<div class="fb-comments" data-href="{{url('/item/'.$item['id'])}}" data-width="100%" data-numposts="5"></div>
