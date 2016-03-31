@@ -63,7 +63,7 @@
 									</div>
 									<div class="form-group">
 										<label for="img">Image preview <small class="error"></small></label>
-										<img class="show margin-bottom img_preview" src="{{url($item['img_preview'])}}" alt="{{$item['title']}}" width="196px">
+										<img class="show margin-bottom img_preview" src="{{$item['img_preview']}}" alt="{{$item['title']}}" width="196px">
 										<input type="file" name="img" id="img">
 										<p class="help-block">Click button to choose image from your device</p>
 									</div>

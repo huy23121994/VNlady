@@ -49,20 +49,55 @@
 				<div class="row header">
 					<h4>{{$item['title']}}</h4>
 					<p>{{$item['created_at']}}</p>
+					<div>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+								<!-- vnlaydy01 -->
+							<ins class="adsbygoogle"
+								 style="display:block"
+								 data-ad-client="ca-pub-6448738734982132"
+								 data-ad-slot="8095157000"
+								 data-ad-format="auto"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
 				</div>
 				<div class="h_iframe">
 					<img class="ratio" src="http://placehold.it/16x9"/>
 	        		<iframe src="{{$item['embed_link']}}" frameborder="0" allowfullscreen></iframe>
 				</div>
-				<div
-				  class="fb-like"
-				  data-share="true"
-				  data-width="340"
-				  data-show-faces="true">
+				<div class="fb-like"
+				  	 data-share="true"
+				  	 data-width="340"
+				  	 data-show-faces="true">
+				</div>
+				<div class="text-center" style="margin: 10px auto 30px; width: 336px; height: 280px;">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- vnlaydy01 -->
+					<ins class="adsbygoogle"
+						 style="display:block"
+						 data-ad-client="ca-pub-6448738734982132"
+						 data-ad-slot="8095157000"
+						 data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
 				</div>
 				<div class="fb-comments" data-href="{{url('/item/'.$item['id'])}}" data-width="100%" data-numposts="5"></div>
 			</div>
 			<div class="col-sm-4 right-content">
+				<div style="padding: 10px 0">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- vnlaydy01 -->
+					<ins class="adsbygoogle"
+						 style="display:block"
+						 data-ad-client="ca-pub-6448738734982132"
+						 data-ad-slot="8095157000"
+						 data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
 				<div>
 					<h5>Description</h5>
 					<p>{{$item['description']}}</p>
@@ -77,20 +112,22 @@
 				</div>
 				<div>
 					<h5>Related Posts</h5>
-					@foreach($items_relate as $item_relate)
-					<div class="media">
-					  	<div class="media-left">
-					    	<a href="{{url('/item/'.$item_relate['id'])}}">
-					      		<img class="media-object" src="{{'/'.$item_relate['img_preview']}}" alt="{{$item_relate['title']}}" width="100">
-					    	</a>
-					  	</div>
-					  	<div class="media-body">
-						  	<a href="{{url('/item/'.$item_relate['id'])}}">
-						    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
-					    	</a>
-					  	</div>
-					</div>
-					@endforeach
+					@if($count > 0)
+						@foreach($items_relate as $item_relate)
+						<div class="media">
+						  	<div class="media-left">
+						    	<a href="{{url('/item/'.$item_relate['id'])}}">
+						      		<img class="media-object" src="{{$item_relate['img_preview']}}" alt="{{$item_relate['title']}}" width="100">
+						    	</a>
+						  	</div>
+						  	<div class="media-body">
+							  	<a href="{{url('/item/'.$item_relate['id'])}}">
+							    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
+						    	</a>
+						  	</div>
+						</div>
+						@endforeach
+					@endif
 				</div>
 			</div>
 		</div>

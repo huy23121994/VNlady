@@ -50,7 +50,7 @@ class ItemController extends Controller{
             $item = new Items;
             $item->title = $data['title'];
             $item->description = $data['description'];
-            $item->img_preview = 'img/upload/'.$name;
+            $item->img_preview = '/img/upload/'.$name;
             $item->embed_link = $data['embed_link'];
             $item->save();
 

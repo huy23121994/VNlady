@@ -8,7 +8,7 @@
 			<div class="wrapper">
 				<div class="img">
 					<a href="{{url('/item/'.$item['id'])}}">
-						<img src="{{url($item['img_preview'])}}" alt="{{$item['title']}}">
+						<img src="{{$item['img_preview']}}" alt="{{$item['title']}}">
 					</a>
 				</div>
 				<div class="content">

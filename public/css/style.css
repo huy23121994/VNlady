@@ -36,6 +36,7 @@ footer{
 .navbar-default{
 	background-color: #E91E63;
 	border-color: #DC2966;
+	margin-bottom: 15px;
 }
 .navbar-default .navbar-nav>li>a{
 	color: #fff;
@@ -83,8 +84,8 @@ section#show-item > .row{
     box-shadow: 0px 2px 7px #BBB;
 }
 @media screen and (min-width: 768px){
-	section#show-item .left-content{
-	    border-right: 1px solid #ddd;
+	section#show-item .right-content{
+	    border-left: 1px solid #ddd;
 	}
 }
 section#show-item .left-content .header{
