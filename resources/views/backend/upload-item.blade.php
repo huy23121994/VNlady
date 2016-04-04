@@ -29,14 +29,18 @@
 			</div>
 			<div class="form-group">
 				<label for="img">Image preview <small class="error"></small></label>
-				<input type="file" name="img" id="img" required>
+				<input type="file" name="img" id="img" required accept="image/*">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<p class="help-block">Click button to choose image from your device</p>
 			</div>
 		</div><!-- /.box-body -->
 
 		<div class="box-footer">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">
+				<i class="fa fa-upload"></i>
+				<i class="fa fa-refresh fa-spin hidden"></i>
+				 Upload
+			 </button>
 		</div>
 	</form>
 </div>

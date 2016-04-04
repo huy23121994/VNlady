@@ -36,7 +36,7 @@ class ItemController extends Controller{
                 'description' => 'required|max:1000',
                 'embed_link' => 'required|URL|max:255',
                 'categories' => 'required',
-                'img' => 'required',
+                'img' => 'required|image',
             ]
         );
         if ($validator->fails()) {
@@ -91,14 +91,18 @@ class ItemController extends Controller{
             $item->description = $data['description'];
             $item->embed_link = $data['embed_link'];
             if ($request->hasFile('img')) {
+
+                unlink(substr($item['img_preview'], 1));// delete old file
+
                 $name = uniqid().'.jpg';
                 $file = $data['img'];
                 $file->move('img/upload',$name);
-                $item->img_preview = 'img/upload/'.$name;
+                $item->img_preview = '/img/upload/'.$name;
             }
             $item->save();
 
-            $relation = Ic_relations::where('item_id',$id)->delete();
+            $relation = Ic_relations::where('item_id',$id)->delete(); //delete old relations
+
             foreach ($data['categories'] as $category) {
                 $relation = new Ic_relations;
                 $relation->item_id = $id;
@@ -115,7 +119,14 @@ class ItemController extends Controller{
 
     public function getDestroy($id){
         $relation = Ic_relations::where('item_id',$id)->delete();
-        $item = Items::find($id)->delete();
+        $item = Items::find($id);
+
+        //delete file
+        $file_delete = $item['img_preview'];
+        unlink(substr($file_delete, 1));
+        
+        //delete record
+        $item->delete();
         return redirect('/manager/item');
     }
 }

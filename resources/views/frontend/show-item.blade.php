@@ -45,6 +45,7 @@
 
 	<section class="container" id="show-item">
 		<div class="row">
+			<!-- LEFT CONTENT -->
 			<div class="col-sm-8 left-content">
 				<div class="row header">
 					<h4>{{$item['title']}}</h4>
@@ -85,8 +86,11 @@
 				</div>
 				<div class="fb-comments" data-href="{{url('/item/'.$item['id'])}}" data-width="100%" data-numposts="5"></div>
 			</div>
+			<!-- END LEFT CONTENT -->
+
+			<!-- RIGHT CONTENT -->
 			<div class="col-sm-4 right-content">
-				<div style="padding: 10px 0">
+				<div style="padding: 25px 0">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 						<!-- vnlaydy01 -->
 					<ins class="adsbygoogle"
@@ -129,6 +133,7 @@
 						@endforeach
 					@endif
 				</div>
+				<!-- END RIGHT CONTENT -->
 			</div>
 		</div>
 	</section>

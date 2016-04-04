@@ -72,13 +72,19 @@
 
 		$('form#upload').on('submit',function(e) {
 			e.preventDefault();
+
+			// Disable button when ajax is loading
+			$('button[type="submit"]').attr('disabled','disabled')
+				.find('i.fa-refresh').removeClass('hidden')
+				.siblings('i.fa-upload').addClass('hidden');
+
 			$.ajax({
 				type:'POST',
 				url: $(this).attr('action'),
 				data:  new FormData($(this)[0]),
 				contentType: false,
 				processData: false,
-				cache: true,
+				cache: false,
 			}).done(function(data){
 				if (data=='success'){
 					alert('Upload success!');
@@ -87,7 +93,9 @@
 				}else{
 					alert('Upload fail!');
 					var errors =$.parseJSON(data);
-					$('small.error').html('');
+
+					$('small.error').html('');	//reset error message
+
 					function adderror(input,val){
 						var input_selector = $('#'+ input );
 						input_selector.siblings('label').find('small')
@@ -103,6 +111,11 @@
 						if (key == 'img') adderror('img',val);
 					})
 				}
+
+				// Enable button when ajax is loading
+				$('button[type="submit"]').removeAttr('disabled','disabled')
+					.find('i.fa-refresh').addClass('hidden')
+					.siblings('i.fa-upload').removeClass('hidden');
 			}).fail(function(){
 				alert('Error upload to server!');
 			})

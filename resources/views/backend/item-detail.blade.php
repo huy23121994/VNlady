@@ -70,8 +70,11 @@
 								</div><!-- /.box-body -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="box-footer">
-									<button type="submit" class="btn btn-primary">Update</button>
-									<a href="" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal">Delete</a>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-refresh"></i>
+										 Update
+									</button>
+									<a href="" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal"><i class="fa fa-trash-o"></i> Delete</a>
 								</div>
 							</form>
 		              	</div>
@@ -115,6 +118,10 @@
 
 		$('form#upload').on('submit',function(e) {
 			e.preventDefault();
+
+			// Disable button when ajax is loading
+			$('button[type="submit"]').attr('disabled','disabled').find('i').addClass('fa-spin');
+
 			$.ajax({
 				type:'POST',
 				url: $(this).attr('action'),
@@ -144,6 +151,9 @@
 						if (key == 'img') adderror('img',val);
 					})
 				}
+				// Enalbe button when ajax stoped
+				$('button[type="submit"]').removeAttr('disabled').find('i').removeClass('fa-spin');
+
 			}).fail(function(){
 				alert('Loi server');
 			})
