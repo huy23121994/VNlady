@@ -36,7 +36,7 @@ class ItemController extends Controller{
                 'description' => 'required|max:1000',
                 'embed_link' => 'required|URL|max:255',
                 'categories' => 'required',
-                'img' => 'required|image',
+                'img' => 'required|image|max:300',
             ]
         );
         if ($validator->fails()) {
@@ -80,6 +80,7 @@ class ItemController extends Controller{
                 'description' => 'required|max:1000',
                 'embed_link' => 'required|URL|max:255',
                 'categories' => 'required',
+                'img' => 'image|max:300',
             ]
         );
         if ($validator->fails()) {
@@ -112,7 +113,7 @@ class ItemController extends Controller{
             if ($item and $relation) {
                 echo "success";
             }else{
-                echo "fail";
+                echo "fail";    
             }
         }
     }

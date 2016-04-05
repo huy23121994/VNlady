@@ -23,10 +23,12 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/manager/item/{id}/edit','ItemController@Edit');
-    Route::post('/manager/item/{id}/update','ItemController@Update');
-    Route::controller('manager/item','ItemController');
-    Route::resource('manager/category','CategoryController');
+    Route::group(['prefix' => 'manager'],function(){
+	    Route::get('item/{id}/edit','ItemController@Edit');
+	    Route::post('item/{id}/update','ItemController@Update');
+	    Route::controller('item','ItemController');
+	    Route::resource('category','CategoryController');
+    });
 	Route::controller('/vnlady-signin','SessionController');
 	Route::controller('/','ViewController');
 });

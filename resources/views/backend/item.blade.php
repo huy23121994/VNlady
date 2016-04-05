@@ -112,7 +112,7 @@
 					})
 				}
 
-				// Enable button when ajax is loading
+				// Enable button when ajax stoped
 				$('button[type="submit"]').removeAttr('disabled','disabled')
 					.find('i.fa-refresh').addClass('hidden')
 					.siblings('i.fa-upload').removeClass('hidden');

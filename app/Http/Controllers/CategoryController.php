@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return "Chuc nang dang duoc cap nhat";
     }
 
     /**
