@@ -18,7 +18,7 @@
 @endsection
 
 @section('css')
-	<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 @endsection
 
 @section('main')

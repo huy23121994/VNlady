@@ -31,7 +31,7 @@
 				<label for="img">Image preview <small class="error"></small></label>
 				<input type="file" name="img" id="img" required accept="image/*">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<p class="help-block">Click button to choose image from your device</p>
+				<p class="help-block">Click button to choose image from your device ( Recommend file < 300Kb )</p>
 			</div>
 		</div><!-- /.box-body -->
 

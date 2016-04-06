@@ -4,7 +4,6 @@
 
 @section('css')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="/css/backend/dist/skins/skin-blue.min.css">
 	<!-- Select2  -->
 	<link rel="stylesheet" href="/css/backend/plugins/select2.min.css">
@@ -65,7 +64,7 @@
 										<label for="img">Image preview <small class="error"></small></label>
 										<img class="show margin-bottom img_preview" src="{{$item['img_preview']}}" alt="{{$item['title']}}" width="196px">
 										<input type="file" name="img" id="img">
-										<p class="help-block">Click button to choose image from your device</p>
+										<p class="help-block">Click button to choose image from your device ( Recommend file < 300Kb )</p>
 									</div>
 								</div><!-- /.box-body -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -107,59 +106,16 @@
 @endsection
 
 @section('js')
-	<script src="{{url('js/backend/dist/app.min.js')}}"></script>
+	<script src="/js/backend/dist/app.min.js"></script>
 	<!-- Select2 -->
-	<script src="{{url('js/backend/plugins/select2.full.min.js')}}"></script>
+	<script src="/js/backend/plugins/select2.full.min.js"></script>
+	<script type="text/javascript" src="/js/backend/ajax/item-update.js"></script>
 	<script type="text/javascript">
 		$('.category p').each(function(){
 			$category_id = $(this).text();
 			$('option[value="'+$category_id+'"]').attr('selected','true');
 		})
-
-		$('form#upload').on('submit',function(e) {
-			e.preventDefault();
-
-			// Disable button when ajax is loading
-			$('button[type="submit"]').attr('disabled','disabled').find('i').addClass('fa-spin');
-
-			$.ajax({
-				type:'POST',
-				url: $(this).attr('action'),
-				data:  new FormData($(this)[0]),
-				contentType: false,
-				processData: false,
-				cache: true,
-			}).done(function(data){
-				if (data=='success'){
-					alert('Update success!');
-				}else{
-					alert('Update fail!');
-					var errors =$.parseJSON(data);
-					$('small.error').html('');
-					function adderror(input,val){
-						var input_selector = $('#'+ input );
-						input_selector.siblings('label').find('small')
-									.html(val)
-									.css({'color':'#dd4b39','font-weight':'normal'});
-					}
-
-					$.each(errors, function(key,val){
-						if (key == 'title') adderror('title',val);
-						if (key == 'description') adderror('description',val);
-						if (key == 'embed_link') adderror('embed_link',val);
-						if (key == 'categories') adderror('categories',val);
-						if (key == 'img') adderror('img',val);
-					})
-				}
-				// Enalbe button when ajax stoped
-				$('button[type="submit"]').removeAttr('disabled').find('i').removeClass('fa-spin');
-
-			}).fail(function(){
-				alert('Loi server');
-			})
-		})
-
-
+		
 	    $(document).ready(function () {
 			//Initialize Select2 Elements
         	$(".select2").select2();
@@ -185,6 +141,5 @@
             }
             /* END change image*/
 	    });
-    
 	</script>
 @endsection
