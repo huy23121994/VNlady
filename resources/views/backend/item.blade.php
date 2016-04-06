@@ -1,23 +1,13 @@
-@extends('master')
+@extends('backend/layouts/backend-layout')
 
-@section('title','ADMIN - VN LADY')
-
-@section('css')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/backend/dist/skins/skin-blue.min.css">
+@section('backend-css')
 	<!-- Select2  -->
 	<link rel="stylesheet" href="/css/backend/plugins/select2.min.css">
 	<!-- DataTables  -->
 	<link rel="stylesheet" href="/css/backend/plugins/datatables/dataTables.bootstrap.css">
-	<link rel="stylesheet" href="/css/backend/dist/AdminLTE.min.css">
 @endsection
 
-@section('body-class','skin-blue sidebar-mini')
-
-@section('main')
-	<div class="wrapper">
-		@include('backend.layouts.header')
-		@include('backend.layouts.sidebar')
+@section('backend-main')
 		<div class="content-wrapper" style="min-height: 351px;">
 			<!-- Content Header (Page header) -->
 	        <section class="content-header">
@@ -56,17 +46,15 @@
 
 	        </section>
 		</div>
-		@include('backend.layouts.footer')
-	</div>
 @endsection
 
-@section('js')
-	<script src="/js/backend/dist/app.min.js"></script>
+@section('backend-js')
 	<!-- Select2 -->
 	<script src="/js/backend/plugins/select2.full.min.js"></script>
 	<!-- DataTables  -->
 	<script src="/js/backend/plugins/datatables/jquery.dataTables.min.js"></script>
 	<script src="/js/backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
+	
 	<script src="/js/backend/ajax/item-upload.js"></script>
 	<script type="text/javascript">
 	    $(document).ready(function () {
