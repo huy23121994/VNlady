@@ -54,7 +54,7 @@
 	<!-- DataTables  -->
 	<script src="/js/backend/plugins/datatables/jquery.dataTables.min.js"></script>
 	<script src="/js/backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
-	
+
 	<script src="/js/backend/ajax/item-upload.js"></script>
 	<script type="text/javascript">
 	    $(document).ready(function () {

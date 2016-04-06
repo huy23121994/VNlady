@@ -33,7 +33,7 @@ class SessionController extends Controller
             $admin = User::where('account',$data['account'])->first();
             if ($admin) {
                 if ($data['password']==$admin['password']) {
-                    session(['admin'=>'vnlady']);
+                    session(['admin'=>$admin]);
                     echo "success";
                 }else{
                     echo "fail: incorrect password";

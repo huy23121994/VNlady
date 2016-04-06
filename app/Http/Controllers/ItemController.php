@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Items;
-
 use App\Ic_relations;
 
 use Validator;
@@ -52,6 +51,7 @@ class ItemController extends Controller{
             $item->description = $data['description'];
             $item->img_preview = '/img/upload/'.$name;
             $item->embed_link = $data['embed_link'];
+            $item->user_id = $request->session()->get('admin')['id'];
             $item->save();
 
             foreach ($data['categories'] as $key => $category) {
