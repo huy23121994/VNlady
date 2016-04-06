@@ -33,6 +33,11 @@
 	        	<div class="row">
 	        		<div class="col-sm-12">
 		        		<div class="nav-tabs-custom">
+		        			<div class="box-header">
+			        			<label>Uploader : </label><span> {{$item->user['account']}}</span></br>
+			        			<label>Created Time : </label><span> {{$item['created_at']}}</span></br>
+			        			<label>Updated Time : </label><span> {{$item['updated_at']}}</span></br>
+		        			</div>
 			                <form action="{{url('manager/item/'.$item['id'].'/update')}}" id="upload" role="form">
 								<div class="box-body">
 									<div class="form-group">

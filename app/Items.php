@@ -10,4 +10,9 @@ class Items extends Model
     {
     	return $this->belongsToMany('App\Categories','ic_relations', 'item_id', 'category_id');
     }
+
+    public function user()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }
