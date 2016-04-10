@@ -14,6 +14,9 @@
 				processData: false,
 				cache: false,
 			}).done(function(data){
+
+				$('small.error').html('');	//reset error message
+
 				if (data=='success'){
 					alert('Upload success!');
 					$('form#upload')[0].reset();
@@ -21,9 +24,6 @@
 				}else{
 					alert('Upload fail!');
 					var errors =$.parseJSON(data);
-
-					$('small.error').html('');	//reset error message
-
 					function adderror(input,val){
 						var input_selector = $('#'+ input );
 						input_selector.siblings('label').find('small')

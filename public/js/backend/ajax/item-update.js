@@ -13,12 +13,12 @@
 				processData: false,
 				cache: true,
 			}).done(function(data){
+				$('small.error').html('');
 				if (data=='success'){
 					alert('Update success!');
 				}else{
 					alert('Update fail!');
 					var errors =$.parseJSON(data);
-					$('small.error').html('');
 					function adderror(input,val){
 						var input_selector = $('#'+ input );
 						input_selector.siblings('label').find('small')

@@ -22,9 +22,9 @@ class ItemController extends Controller{
         
     }
 
-    // public function getCreate(){
-        
-    // }
+    public function getCreate(){
+        return view('backend/item-create');
+    }
 
     public function postStore(Request $request){
         $data = $request->all();

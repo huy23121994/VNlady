@@ -6,15 +6,22 @@
 	<!-- DataTables  -->
 	<link rel="stylesheet" href="/css/backend/plugins/datatables/dataTables.bootstrap.css">
 @endsection
-
+@section('all','active')
 @section('backend-main')
 		<div class="content-wrapper" style="min-height: 351px;">
 			<!-- Content Header (Page header) -->
 	        <section class="content-header">
 	          	<h1>
-		            Video management
-		            <small>Embed from Youtube</small>
+		            Posts
+		            <a href="{{url('manager/item/create')}}" class="btn btn-primary btn-sm">
+		            	<i class="glyphicon glyphicon-plus" style="font-size: 10px;"></i> Add new
+		            </a>
 	          	</h1>
+	          	<ol class="breadcrumb">
+		            <li><a href="{{url('manager/item')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+		            <li><a href="{{url('manager/item')}}"> Posts</a></li>
+		            <li class="active">{{$item['title']}}</li>
+		        </ol>
 	        </section>
 
 	        <!-- Main content -->

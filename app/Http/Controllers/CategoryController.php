@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend/analytics');
+        return view('backend/category');
     }
 
     /**

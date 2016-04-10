@@ -19,10 +19,16 @@
           <ul class="sidebar-menu">
             <li class="header">DASHBOARD</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active">
+            <li class="treeview active">
               <a href="{{url('manager/item')}}">
-                <i class="fa fa-video-camera"></i> <span>Items</span>
+                <i class="fa fa-thumb-tack"></i> <span>Posts</span><i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu menu-open">
+                <li class="@yield('all')"><a href="{{url('manager/item')}}"><i class="fa fa-circle-o"></i> All Posts</a></li>
+                <li class="@yield('new')"><a href="{{url('manager/item/create')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
+                <li class="@yield('cate')"><a href="{{url('manager/category')}}"><i class="fa fa-circle-o"></i> Categories</a></li>
+                <li class="@yield('tag')"><a href="{{url('manager/tag')}}"><i class="fa fa-circle-o"></i> Tags</a></li>
+              </ul>
             </li>
             <li>
               <a href="{{url('manager/category')}}">

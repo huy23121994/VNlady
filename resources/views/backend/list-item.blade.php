@@ -1,5 +1,5 @@
 <?php $stt = 1 ?>
-<div class="">
+<div style="padding: 15px;">
     <table class="table table-striped" id="list-item" cellspacing="0" width="100%">
         <thead>
             <tr>
