@@ -39,9 +39,13 @@
 	});
 Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'manager'],function(){
+
 	    Route::get('item/{id}/edit','ItemController@Edit');
 	    Route::post('item/{id}/update','ItemController@Update');
 	    Route::controller('item','ItemController');
+
+	    Route::get('tag/{id}/edit','TagController@Edit');
+	    Route::post('tag/{id}/update','TagController@Update');
 	    Route::controller('tag','TagController');
 	    Route::resource('category','CategoryController');
     });
