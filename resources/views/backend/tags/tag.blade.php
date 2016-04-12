@@ -1,3 +1,4 @@
+<?php $stt = 1 ?>
 @extends('backend/layouts/backend-layout')
 
 @section('backend-css')
@@ -17,9 +18,12 @@
 		<div class="content-wrapper" style="min-height: 351px;">
 			<!-- Content Header (Page header) -->
 	        <section class="content-header">
-	          	<h1>
-		            Tags
-	          	</h1>
+	          	<h1>Tags</h1>
+	          	<ol class="breadcrumb">
+		            <li><a href="{{url('manager/item')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+		            <li><a href="{{url('manager/item')}}"> Posts</a></li>
+		            <li class="active">Tags</li>
+		        </ol>
 	        </section>
 
 	        <!-- Main content -->
@@ -32,12 +36,13 @@
 				                <div class="box-header with-border">
 				                  <h3 class="box-title">Add New Tag</h3>
 				                </div><!-- /.box-header -->
+
 				                <!-- form start -->
-				                <form action="{{url('manager/tag/store')}}" role="form" method="post">
+				                <form action="{{url('manager/tag/store')}}" role="form" method="POST">
 				                  <div class="box-body">
 				                    <div class="form-group">
 				                      	<label>Name <small class="error">{{$errors->first('tag_name')}}</small></label>
-				                      	<input type="text" class="form-control" name="tag_name" placeholder="Enter tag name" required>
+				                      	<input  type="text" class="form-control" name="tag_name" value="{{ old('tag_name') }}" placeholder="Enter tag name" required>
 				                      	<p class="help-block">The name is how it appears on your site.</p>
 				                    </div>
 				                    <div class="form-group">
@@ -68,24 +73,27 @@
 		        				<table class="table table-striped" id="list-item" cellspacing="0" width="100%">
 							        <thead>
 							            <tr>
+							            	<th>No.</th>
 							                <th>Name</th>
 							                <th>Slug</th>
-                							<th>Action</th>
+                							<th>Count</th>
 							            </tr>
 							        </thead>
 							        <tfoot>
 							            <tr>
+							            	<th>No.</th>
 							                <th>Name</th>
 							                <th>Slug</th>
-                							<th>Action</th>
+                							<th>Count</th>
 							            </tr>
 							        </tfoot>
 							        <tbody>
 							       	@foreach($tags as $tag)
 							            <tr>
-							                <td><a href="">{{$tag['tag_name']}}</a></td>
+							            	<td><?php echo $stt; $stt++ ?></td>
+							                <td><a href="{{url('manager/tag/'.$tag['id'].'/edit')}}">{{$tag['tag_name']}}</a></td>
 							                <td>{{$tag['slug']}}</td>
-							                <td>action</td>
+							                <td>5</td>
 							            </tr>
 							        @endforeach
 							        </tbody>
@@ -110,15 +118,5 @@
 	    	//DataTable
 	        var table = $("#list-item").DataTable();
 	    })
-	    // $('form').on('submit',function(s){
-	    // 	s.preventDefault();
-	    // 	$.post(
-	    // 		$(this).attr('action'),
-	    // 		$(this).serialize(),
-	    // 		function(data) {
-	    // 			console.log('ok');
-	    // 		}
-	    // 	)
-	    // })
 	</script>
 @endsection

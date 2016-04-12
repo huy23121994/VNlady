@@ -110,6 +110,7 @@
 	<script src="/js/backend/plugins/select2.full.min.js"></script>
 	<script type="text/javascript" src="/js/backend/ajax/item-update.js"></script>
 	<script type="text/javascript">
+		//list category selected
 		$('.category p').each(function(){
 			$category_id = $(this).text();
 			$('option[value="'+$category_id+'"]').attr('selected','true');
