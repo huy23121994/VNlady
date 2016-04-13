@@ -22,21 +22,6 @@
 |
 */
 
-	Route::get('/addtag',function(){
-		Schema::create('tags', function ($table) {
-		    $table->increments('id');
-		    $table->string('tag_name');
-		    $table->timestamps();
-		});	
-	});
-	Route::get('/add',function(){
-		Schema::create('items_tags', function ($table) {
-		    $table->increments('id');
-		    $table->integer('items_id');
-		    $table->integer('tags_id');
-		    $table->timestamps();
-		});	
-	});
 Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'manager'],function(){
 

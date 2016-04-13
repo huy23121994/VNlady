@@ -32,7 +32,7 @@
             </li>
             <li>
               <a href="{{url('manager/category')}}">
-                <i class="fa fa-gavel"></i> <span>Categoies</span>
+                <i class="fa fa-user"></i> <span>User</span>
               </a>
             </li>
           </ul><!-- /.sidebar-menu -->

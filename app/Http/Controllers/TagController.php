@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Items_tags;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,15 +25,31 @@ class TagController extends Controller
     public function postStore(TagRequest $request)
     {
         $data = $request->all();
+        // convert slug
+        $name_to_slug = str_replace(" ", "-", strtolower(trim($data['tag_name'])) );
+        $slug = str_replace(" ", "-", strtolower(trim($data['slug'])) );
+
         $tag = new Tag;
         $tag->tag_name = trim($data['tag_name']);
         if ($data['slug']!=null) {
-            $tag->slug = str_replace(" ", "-", trim($data['slug']));
+            $exist_tag = Tag::where('slug',$name_to_slug)->first();
+            if ($exist_tag) {
+                return redirect('/manager/tag')->withInput($request->except('slug'))
+                                               ->with('error','This slug was exist');
+            }else{
+                $tag->slug = $slug;
+            }
         }else{
-            $tag->slug = str_replace(" ", "-", trim($data['tag_name']));
+            $exist_tag = Tag::where('slug',$name_to_slug)->first();
+            if ($exist_tag) {
+                return redirect('/manager/tag')->withInput($request->except('slug'))
+                                               ->with('error','This slug was exist');
+            }else{
+                $tag->slug = $name_to_slug;
+            }
         }
         $tag->save();
-        return redirect('/manager/tag')->withInput($request->except('slug'));;
+        return redirect('/manager/tag');
     }
 
     // public function show($id)
@@ -50,8 +67,10 @@ class TagController extends Controller
     {
         $data = $request->all();
         $tag = Tag::find($id);
-        $name_to_slug = str_replace(" ", "-", trim($data['tag_name']));
-        $slug = str_replace(" ", "-", trim($data['slug']));
+        // convert slug
+        $name_to_slug = str_replace(" ", "-", strtolower(trim($data['tag_name'])) );
+        $slug = str_replace(" ", "-", strtolower(trim($data['slug'])) );
+
         if ($data['tag_name'] != null) {
             $tag->tag_name = trim($data['tag_name']);
             if ($slug == $tag['slug']) {
@@ -83,6 +102,8 @@ class TagController extends Controller
     {
         $tag = Tag::find($id);
         $tag->delete();
+        $items_tags = Items_tags::where('tag_id',$id);
+        $items_tags->delete();
         return redirect('/manager/tag');
     }
 }

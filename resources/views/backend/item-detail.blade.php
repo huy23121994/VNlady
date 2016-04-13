@@ -49,7 +49,7 @@
 									   <label>Embed link <small class="error"></small></label>
 									   <input type="url" class="form-control" id="embed_link" name="embed_link" value="{{$item['embed_link']}}" placeholder="Enter the embed link" required>
 									</div>
-									<div class="form-group">
+									<div class="form-group categories-select">
 										<label>Category <small class="error"></small></label>
 										<input type="hidden" id="categories"></input>
 										<select class="form-control select2 select2-hidden-accessible" name="categories[]" multiple data-placeholder="Select category" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
@@ -60,6 +60,14 @@
 									      	<option value="5">Nails</option>
 									      	<option value="6">Cooking</option>
 										    <option value="7">Health</option>
+									    </select>
+									</div>
+									<div class="form-group tags-select">
+										<label>Tags </label>
+										<select class="form-control select2 select2-hidden-accessible" name="tags[]" multiple data-placeholder="Select tags" style="width: 100%;" tabindex="-1" aria-hidden="true">
+											@foreach($tags as $tag)
+										      	<option value="{{$tag['id']}}">{{$tag['tag_name']}}</option>
+										    @endforeach
 									    </select>
 									</div>
 									<div class="form-group">
@@ -101,6 +109,11 @@
 	        			<p>{{$category['id']}}</p>
 	        		@endforeach
 	        	</div>
+	        	<div class="hidden tag">
+	        		@foreach($item->tags as $tag)
+	        			<p>{{$tag['id']}}</p>
+	        		@endforeach
+	        	</div>
 	        </section>
 		</div>
 @endsection
@@ -113,7 +126,12 @@
 		//list category selected
 		$('.category p').each(function(){
 			$category_id = $(this).text();
-			$('option[value="'+$category_id+'"]').attr('selected','true');
+			$('.categories-select option[value="'+$category_id+'"]').attr('selected','true');
+		})
+		//list tag selected
+		$('.tag p').each(function(){
+			$tag_id = $(this).text();
+			$('.tags-select option[value="'+$tag_id+'"]').attr('selected','true');
 		})
 		
 	    $(document).ready(function () {

@@ -36,8 +36,8 @@
 				                <form action="{{url('manager/tag/'.$tag['id'].'/update')}}" role="form" method="post">
 				                  <div class="box-body">
 				                    <div class="form-group">
-				                      	<label>Name <small class="error">{{$errors->first('tag_name')}}</small></label>
-				                      	<input type="text" class="form-control" name="tag_name" value="{{$tag['tag_name']}}">
+				                      	<label>Name</label>
+				                      	<input type="text" class="form-control" name="tag_name" value="{{$tag['tag_name']}}" required>
 				                      	<p class="help-block">The name is how it appears on your site.</p>
 				                    </div>
 				                    <div class="form-group">

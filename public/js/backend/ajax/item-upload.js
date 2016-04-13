@@ -19,8 +19,8 @@
 
 				if (data=='success'){
 					alert('Upload success!');
-					$('form#upload')[0].reset();
-					$('.select2').select2('val',0);
+					$('form#upload')[0].reset();	//reset form
+					$('.select2').val(null).trigger("change"); 		//reset select2
 				}else{
 					alert('Upload fail!');
 					var errors =$.parseJSON(data);

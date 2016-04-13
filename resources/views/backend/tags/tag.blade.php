@@ -46,7 +46,13 @@
 				                      	<p class="help-block">The name is how it appears on your site.</p>
 				                    </div>
 				                    <div class="form-group">
-				                      	<label>Slug <small class="error">{{$errors->first('slug')}}</small></label>
+				                      	<label>Slug 
+				                      		<small class="error">
+					                      		@if(session('error'))
+					                      			{{session('error')}}
+					                      		@endif
+					                      	</small>
+				                      	</label>
 				                      	<input type="text" class="form-control" name="slug" placeholder="Enter tag slug">
 				                      	<p class="help-block">The “slug” is the URL-friendly version of the name. Ex: If you enter "amazing-nails", url will be "vnlady.us/tag/amazing-nails"</p>
 				                    </div>

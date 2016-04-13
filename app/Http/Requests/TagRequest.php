@@ -25,7 +25,7 @@ class TagRequest extends Request
     {
         return [
             'tag_name' => 'required',
-            'slug' => 'unique:tags,slug',
+            // 'slug' => 'unique:tags,slug',
         ];
     }
     public function messages()

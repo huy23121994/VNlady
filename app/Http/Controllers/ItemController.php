@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Items;
 use App\Ic_relations;
+use App\Tag;
+use App\Items_tags;
 
 use Validator;
 
@@ -23,7 +25,8 @@ class ItemController extends Controller{
     }
 
     public function getCreate(){
-        return view('backend/item-create');
+        $tags = Tag::all();
+        return view('backend/item-create',compact('tags',$tags));
     }
 
     public function postStore(Request $request){
@@ -60,6 +63,12 @@ class ItemController extends Controller{
                 $relation->category_id = $category;
                 $relation->save();
             }
+            foreach ($data['tags'] as $key => $tag) {
+                $item_tag = new Items_tags;
+                $item_tag->item_id = $item['id'];
+                $item_tag->tag_id = $tag;
+                $item_tag->save();
+            }
             echo 'success';
         }else{
             echo 'fail';
@@ -67,8 +76,9 @@ class ItemController extends Controller{
     }
 
     public function Edit($id){
+        $tags = Tag::all();
         $item = Items::find($id);
-        return view('backend/item-detail')->with('item',$item);
+        return view('backend/item-detail')->with(['item' => $item,'tags' => $tags]);
     }
 
     public function Update(Request $request, $id){
@@ -110,6 +120,15 @@ class ItemController extends Controller{
                 $relation->category_id = $category;
                 $relation->save();
             }
+
+            Items_tags::where('item_id',$id)->delete(); //delete old item_tag relations
+
+            foreach ($data['tags'] as $key => $tag) {
+                $item_tag = new Items_tags;
+                $item_tag->item_id = $item['id'];
+                $item_tag->tag_id = $tag;
+                $item_tag->save();
+            }
             if ($item and $relation) {
                 echo "success";
             }else{
@@ -120,6 +139,7 @@ class ItemController extends Controller{
 
     public function getDestroy($id){
         $relation = Ic_relations::where('item_id',$id)->delete();
+        $items_tags = Items_tags::where('item_id',$id)->delete();
         $item = Items::find($id);
 
         //delete file

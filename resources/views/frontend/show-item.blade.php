@@ -114,6 +114,16 @@
 					@endforeach
 					</p>
 				</div>
+				@if($item->tags->count() > 0)
+					<div>
+						<h5>Tags</h5>
+						<p>
+						@foreach($item->tags as $tag)
+							<a href="{{url('tag/'.$tag['slug'])}}">{{$tag['tag_name']}} </a>
+						@endforeach
+						</p>
+					</div>
+				@endif
 				<div>
 					<h5>Related Posts</h5>
 					@if($count > 0)
