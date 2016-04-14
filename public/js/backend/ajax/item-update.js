@@ -4,11 +4,12 @@
 
 			// Disable button when ajax is loading
 			$('button[type="submit"]').attr('disabled','disabled').find('i').addClass('fa-spin');
-
+			var fd = new FormData($(this)[0]);
+			fd.append('content',tinyMCE.activeEditor.getContent());
 			$.ajax({
 				type:'POST',
 				url: $(this).attr('action'),
-				data:  new FormData($(this)[0]),
+				data:  fd,
 				contentType: false,
 				processData: false,
 				cache: true,

@@ -6,10 +6,13 @@
 				.find('i.fa-refresh').removeClass('hidden')
 				.siblings('i.fa-upload').addClass('hidden');
 
+			var fd = new FormData($(this)[0]);
+			fd.append('content',tinyMCE.activeEditor.getContent());
+			
 			$.ajax({
 				type:'POST',
 				url: $(this).attr('action'),
-				data:  new FormData($(this)[0]),
+				data:  fd,
 				contentType: false,
 				processData: false,
 				cache: false,

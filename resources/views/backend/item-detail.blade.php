@@ -41,13 +41,29 @@
 										<label>Title <small class="error"></small></label>
 										<input type="text" class="form-control" id="title" name="title" value="{{$item['title']}}" placeholder="Enter title" required>
 									</div>
-									<div class="form-group">
-									   <label>Description <small class="error"></small></label>
-									   <textarea class="form-control" id="description" name="description" placeholder="Enter description" required>{{$item['description']}}</textarea>
-									</div>
-									<div class="form-group">
-									   <label>Embed link <small class="error"></small></label>
-									   <input type="url" class="form-control" id="embed_link" name="embed_link" value="{{$item['embed_link']}}" placeholder="Enter the embed link" required>
+									<div style="background-color: #F0F8FF;padding: 10px;">
+										<ul class="nav nav-tabs">
+											<li class=""><a href="#link" data-toggle="tab" aria-expanded="true">Video</a></li>
+											<li class=""><a href="#article" data-toggle="tab" aria-expanded="true">Article</a></li>
+										</ul>		
+										<div class="tab-content">
+										  	<div class="tab-pane " id="link">
+												<div class="form-group">
+												   <label>Embed link <small class="error"></small></label>
+												   <input type="url" class="form-control" id="embed_link" name="embed_link" value="{{$item['embed_link']}}" placeholder="Enter the embed link">
+												</div>
+												<div class="form-group">
+												   <label>Description <small class="error"></small></label>
+												   <textarea class="form-control" id="description" name="description" placeholder="Enter description">{{$item['description']}}</textarea>
+												</div>
+										  	</div>	
+										  	<div class="tab-pane" id="article">
+												<div class="form-group">
+												   <label>Article content <small class="error"></small></label>
+												   <textarea class="textarea">{{$item['content']}}</textarea>
+												</div>
+										  	</div>	
+										</div><!-- /.tab-content -->
 									</div>
 									<div class="form-group categories-select">
 										<label>Category <small class="error"></small></label>
@@ -122,6 +138,7 @@
 	<!-- Select2 -->
 	<script src="/js/backend/plugins/select2.full.min.js"></script>
 	<script type="text/javascript" src="/js/backend/ajax/item-update.js"></script>
+	<script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
 	<script type="text/javascript">
 		//list category selected
 		$('.category p').each(function(){
@@ -138,6 +155,21 @@
 			//Initialize Select2 Elements
         	$(".select2").select2();
 
+	        tinymce.init({
+			    selector: '.textarea',
+			    min_height : 300,
+			    plugins: 'image,advlist,media,link,code,paste,textcolor,table', 
+				toolbar: 'undo redo image advlist media link styleselect fontsizeselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+
+			});
+			$('.nav-tabs li').removeClass('active');
+	        @if($item['content']==null)
+	        	$('.nav-tabs li a[href="#link"]').parent().addClass('active');
+	        	$('.tab-pane#link').addClass('active');
+	        @else
+	        	$('.nav-tabs li a[href="#article"]').parent().addClass('active');
+	        	$('.tab-pane#article').addClass('active');
+	        @endif
         	/* Change images before upload */
         	$('#img').on('change',function(){
                 readURL(this,'.img_preview'); 

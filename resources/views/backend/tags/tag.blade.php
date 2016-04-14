@@ -82,7 +82,7 @@
 							            	<th>No.</th>
 							                <th>Name</th>
 							                <th>Slug</th>
-                							<th>Count</th>
+                							<th width="127px">Created Time</th>
 							            </tr>
 							        </thead>
 							        <tfoot>
@@ -90,7 +90,7 @@
 							            	<th>No.</th>
 							                <th>Name</th>
 							                <th>Slug</th>
-                							<th>Count</th>
+                							<th>Created Time</th>
 							            </tr>
 							        </tfoot>
 							        <tbody>
@@ -99,7 +99,7 @@
 							            	<td><?php echo $stt; $stt++ ?></td>
 							                <td><a href="{{url('manager/tag/'.$tag['id'].'/edit')}}">{{$tag['tag_name']}}</a></td>
 							                <td>{{$tag['slug']}}</td>
-							                <td>5</td>
+							                <td>{{$tag['created_at']}}</td>
 							            </tr>
 							        @endforeach
 							        </tbody>

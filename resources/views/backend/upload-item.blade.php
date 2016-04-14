@@ -6,13 +6,29 @@
 				<label>Title <small class="error"></small></label>
 				<input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
 			</div>
-			<div class="form-group">
-			   <label>Description <small class="error"></small></label>
-			   <textarea class="form-control" id="description" name="description" placeholder="Enter description" required></textarea>
-			</div>
-			<div class="form-group">
-			   <label>Embed link <small class="error"></small></label>
-			   <input type="text" class="form-control" id="embed_link" name="embed_link" placeholder="Enter the embed link" required>
+			<div style="background-color: #F0F8FF;padding: 10px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#link" data-toggle="tab" aria-expanded="true">Video</a></li>
+					<li class=""><a href="#article" data-toggle="tab" aria-expanded="true">Article</a></li>
+				</ul>		
+				<div class="tab-content">
+				  	<div class="tab-pane active" id="link">
+						<div class="form-group">
+						   <label>Embed link <small class="error"></small></label>
+						   <input type="text" class="form-control" id="embed_link" name="embed_link" placeholder="Enter the embed link">
+						</div>
+						<div class="form-group">
+						   <label>Description <small class="error"></small></label>
+						   <textarea class="form-control" id="description" name="description" placeholder="Enter description"></textarea>
+						</div>
+				  	</div>	
+				  	<div class="tab-pane" id="article">
+						<div class="form-group">
+						   <label>Article content <small class="error"></small></label>
+						   <textarea class="textarea"></textarea>
+						</div>		
+				  	</div>	
+				</div><!-- /.tab-content -->
 			</div>
 			<div class="form-group">
 				<label>Category <small class="error"></small></label>

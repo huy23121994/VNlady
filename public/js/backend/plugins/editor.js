@@ -127,13 +127,15 @@ You should have received a copy of the GNU General Public License along with thi
 			var container = $('<div/>',{'class':"tabbable tabs-left"});
 			var navTabs = $('<ul/>',
 									{ class: "nav nav-tabs"
-							}).append($('<li/>',
-										{ class:"active"
+							})/*.append($('<li/>',
+										{ class:""
 									}).append($('<a/>',{
 											"href":"#uploadImageBar",
 											"data-toggle":"tab"
 										}).html("From Computer")
-							)).append($('<li/>').append($('<a/>',{
+							))*/.append($('<li/>',
+										{ class: "active"
+									}).append($('<a/>',{
 											"href":"#imageFromLinkBar",
 											"data-toggle":"tab"
 										}).html("From URL")));
@@ -141,7 +143,7 @@ You should have received a copy of the GNU General Public License along with thi
 			var tabContent 		= $("<div/>", {class:"tab-content"});
 			var uploadImageBar  = $("<div/>",{
 				id: "uploadImageBar",
-				class: "tab-pane active"
+				class: "tab-pane"
 			});
 
 			handleFileSelect = function(evt) {
@@ -183,7 +185,7 @@ You should have received a copy of the GNU General Public License along with thi
 			uploadImageBar.append(chooseFromLocal);
 			var imageFromLinkBar = $("<div/>",{
 				id: "imageFromLinkBar",
-				class: "tab-pane"
+				class: "tab-pane active"
 			});		
 			var getImageURL = $("<div/>", {class:"input-group"});
 			var imageURL = $('<input/>',{

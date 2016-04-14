@@ -1,10 +1,10 @@
 <?php
 	$category = $item->categories->first();
 	$count = $category->items->count();
-	if ($count<5) {
+	if ($count<8) {
 		$items_relate = $category->items->random($count);
 	}else{
-		$items_relate = $category->items->random(5);
+		$items_relate = $category->items->random(8);
 	}
 	
 ?>
@@ -64,8 +64,12 @@
 					</div>
 				</div>
 				<div class="h_iframe">
-					<img class="ratio" src="http://placehold.it/16x9"/>
-	        		<iframe src="{{$item['embed_link']}}" frameborder="0" allowfullscreen></iframe>
+					@if($item['content']!=null)
+	        			{!!$item['content']!!}
+	        		@else
+						<img class="ratio" src="http://placehold.it/16x9"/>
+		        		<iframe src="{{$item['embed_link']}}" frameborder="0" allowfullscreen></iframe>
+					@endif
 				</div>
 				<div class="fb-like"
 				  	 data-share="true"

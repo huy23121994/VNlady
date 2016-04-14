@@ -35,8 +35,8 @@ class ItemController extends Controller{
         $validator = Validator::make($data,
             [
                 'title' => 'required|max:255',
-                'description' => 'required|max:1000',
-                'embed_link' => 'required|URL|max:255',
+                'description' => 'max:1000',
+                'embed_link' => 'URL|max:255',
                 'categories' => 'required',
                 'img' => 'required|image|max:300',
             ]
@@ -54,6 +54,7 @@ class ItemController extends Controller{
             $item->description = $data['description'];
             $item->img_preview = '/img/upload/'.$name;
             $item->embed_link = $data['embed_link'];
+            $item->content = $data['content'];
             $item->user_id = $request->session()->get('admin')['id'];
             $item->save();
 
@@ -63,11 +64,13 @@ class ItemController extends Controller{
                 $relation->category_id = $category;
                 $relation->save();
             }
-            foreach ($data['tags'] as $key => $tag) {
-                $item_tag = new Items_tags;
-                $item_tag->item_id = $item['id'];
-                $item_tag->tag_id = $tag;
-                $item_tag->save();
+            if (isset($data['tags'])) {
+                foreach ($data['tags'] as $key => $tag) {
+                    $item_tag = new Items_tags;
+                    $item_tag->item_id = $item['id'];
+                    $item_tag->tag_id = $tag;
+                    $item_tag->save();
+                }
             }
             echo 'success';
         }else{
@@ -87,8 +90,8 @@ class ItemController extends Controller{
         $validator = Validator::make($data,
             [
                 'title' => 'required|max:255',
-                'description' => 'required|max:1000',
-                'embed_link' => 'required|URL|max:255',
+                'description' => 'max:1000',
+                'embed_link' => 'URL|max:255',
                 'categories' => 'required',
                 'img' => 'image|max:300',
             ]
@@ -101,6 +104,7 @@ class ItemController extends Controller{
             $item->title = $data['title'];
             $item->description = $data['description'];
             $item->embed_link = $data['embed_link'];
+            $item->content = $data['content'];
             if ($request->hasFile('img')) {
 
                 unlink(substr($item['img_preview'], 1));// delete old file
@@ -122,12 +126,13 @@ class ItemController extends Controller{
             }
 
             Items_tags::where('item_id',$id)->delete(); //delete old item_tag relations
-
-            foreach ($data['tags'] as $key => $tag) {
-                $item_tag = new Items_tags;
-                $item_tag->item_id = $item['id'];
-                $item_tag->tag_id = $tag;
-                $item_tag->save();
+            if (isset($data['tags'])) {
+                foreach ($data['tags'] as $key => $tag) {
+                    $item_tag = new Items_tags;
+                    $item_tag->item_id = $item['id'];
+                    $item_tag->tag_id = $tag;
+                    $item_tag->save();
+                }
             }
             if ($item and $relation) {
                 echo "success";
