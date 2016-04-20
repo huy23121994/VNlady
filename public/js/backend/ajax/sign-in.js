@@ -26,7 +26,7 @@
 					}
 
 					else if (data=='success') {
-						window.location.href="manager/item";
+						window.location.href="manager/item/create";
 					}else{
 						var errors =$.parseJSON(data);
 						$('error').html('');

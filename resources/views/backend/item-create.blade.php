@@ -50,8 +50,8 @@
 	        tinymce.init({
 			    selector: '.textarea',
 			    min_height : 300,
-			    plugins: 'image,advlist,media,link,code,paste,textcolor,table', 
-				toolbar: 'undo redo image advlist media link styleselect fontsizeselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+			    plugins: 'image,advlist,media,link,save,code,paste,textcolor,table', 
+				toolbar: 'undo redo image advlist media save link styleselect fontsizeselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
 
 			});
 	    });

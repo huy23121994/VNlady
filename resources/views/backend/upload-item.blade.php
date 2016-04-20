@@ -7,7 +7,7 @@
 				<input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
 			</div>
 			<div style="background-color: #F0F8FF;padding: 10px;">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
 					<li class="active"><a href="#link" data-toggle="tab" aria-expanded="true">Video</a></li>
 					<li class=""><a href="#article" data-toggle="tab" aria-expanded="true">Article</a></li>
 				</ul>		

@@ -39,5 +39,5 @@
 		</div>
 	@endforeach
 	</div>
-	{!! $items->links() !!}
+	@include('pagination.limit_links', ['paginator' => $items])
 </section>
