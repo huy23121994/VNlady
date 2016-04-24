@@ -26,6 +26,7 @@
               <ul class="treeview-menu menu-open">
                 <li class="@yield('all')"><a href="{{url('manager/item')}}"><i class="fa fa-circle-o"></i> All Posts</a></li>
                 <li class="@yield('new')"><a href="{{url('manager/item/create')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
+                <li class="@yield('category')"><a href="{{url('manager/category')}}"><i class="fa fa-circle-o"></i> Categories</a></li>
                 <li class="@yield('tag')"><a href="{{url('manager/tag')}}"><i class="fa fa-circle-o"></i> Tags</a></li>
               </ul>
             </li>

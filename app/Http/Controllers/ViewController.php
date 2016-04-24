@@ -14,7 +14,8 @@ class ViewController extends Controller{
     
     public function getIndex(){
     	$items = Items::orderBy('created_at','desc')->paginate(16);
-    	return view('frontend/index')->with('items',$items);
+        // $categories = Categories::all();
+    	return view('frontend/index',['items' => $items]);
     }
 
     public function getItem($id){
@@ -23,7 +24,7 @@ class ViewController extends Controller{
     		return view('errors/404');
     	}
 
-        return view('frontend/show-item')->with('item',$item);
+        return view('frontend/show-item',['item' => $item]);
     }
 
     public function getCategory($id){
@@ -32,11 +33,11 @@ class ViewController extends Controller{
             return view('errors/404');
         }
         $items = $category->items()->orderBy('created_at','desc')->paginate(16);
-        return view('frontend/index')->with('items',$items)
-                                     ->with('category',$category);
+        return view('frontend/index',['items' => $items,'category' => $category]);
     }
     public function getTag($slug){
         $tag = Tag::where('slug',$slug)->first();
+        $categories = Categories::all();
         if (!$tag) {
             return view('errors/404');
         }

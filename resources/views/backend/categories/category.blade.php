@@ -11,16 +11,16 @@
 		}
 	</style>
 @endsection
-@section('tag','active')
+@section('category','active')
 @section('backend-main')
 		<div class="content-wrapper" style="min-height: 351px;">
 			<!-- Content Header (Page header) -->
 	        <section class="content-header">
-	          	<h1>Tags</h1>
+	          	<h1>Categories</h1>
 	          	<ol class="breadcrumb">
 		            <li><a href="{{url('manager/item')}}"><i class="fa fa-dashboard"></i> Home</a></li>
 		            <li><a href="{{url('manager/item')}}"> Posts</a></li>
-		            <li class="active">Tags</li>
+		            <li class="active">Categories</li>
 		        </ol>
 	        </section>
 
@@ -32,15 +32,15 @@
 		        		<div class="nav-tabs-custom">
 		        			<div class="box box-success">
 				                <div class="box-header with-border">
-				                  <h3 class="box-title">Add New Tag</h3>
+				                  <h3 class="box-title">Add New Category</h3>
 				                </div><!-- /.box-header -->
 
 				                <!-- form start -->
-				                <form action="{{url('manager/tag/store')}}" role="form" method="POST">
+				                <form action="{{url('manager/category/store')}}" role="form" method="POST">
 				                  <div class="box-body">
 				                    <div class="form-group">
-				                      	<label>Name <small class="error">{{$errors->first('tag_name')}}</small></label>
-				                      	<input  type="text" class="form-control" name="tag_name" value="{{ old('tag_name') }}" placeholder="Enter tag name" required>
+				                      	<label>Name <small class="error">{{$errors->first('category')}}</small></label>
+				                      	<input  type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="Enter category name" required>
 				                      	<p class="help-block">The name is how it appears on your site.</p>
 				                    </div>
 				                    <div class="form-group">
@@ -58,7 +58,7 @@
 				                  </div><!-- /.box-body -->
 
 				                  <div class="box-footer">
-				                    <button type="submit" class="btn btn-primary">Add New Tag</button>
+				                    <button type="submit" class="btn btn-primary">Add New Category</button>
 				                  </div>
 				                </form>
 				            </div>
@@ -68,7 +68,7 @@
 		        		<div class="nav-tabs-custom">
 		        			<div class="box box-success">
 							    <div class="box-header with-border">
-				                  <h3 class="box-title">List Tags</h3>
+				                  <h3 class="box-title">List Categories</h3>
 				                </div><!-- /.box-header -->
 				                <!-- form start -->
 				                <form role="form">
@@ -92,12 +92,12 @@
 							            </tr>
 							        </tfoot>
 							        <tbody>
-							       	@foreach($tags as $tag)
+							       	@foreach($categories as $category)
 							            <tr>
 							            	<td><?php echo $stt; $stt++ ?></td>
-							                <td><a href="{{url('manager/tag/'.$tag['id'].'/edit')}}">{{$tag['tag_name']}}</a></td>
-							                <td>{{$tag['slug']}}</td>
-							                <td>{{$tag['created_at']}}</td>
+							                <td><a href="{{url('manager/category/'.$category['id'].'/edit')}}">{{$category['category']}}</a></td>
+							                <td>{{$category['slug']}}</td>
+							                <td>{{$category['created_at']}}</td>
 							            </tr>
 							        @endforeach
 							        </tbody>

@@ -69,13 +69,9 @@
 										<label>Category <small class="error"></small></label>
 										<input type="hidden" id="categories"></input>
 										<select class="form-control select2 select2-hidden-accessible" name="categories[]" multiple data-placeholder="Select category" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-									      	<option value="1">Fashion</option>
-									      	<option value="2">Makeup</option>
-									      	<option value="3">DIY</option>
-									      	<option value="4">Hairstyles</option>
-									      	<option value="5">Nails</option>
-									      	<option value="6">Cooking</option>
-										    <option value="7">Health</option>
+											@foreach($categories as $category)
+										      	<option value="{{$category['id']}}">{{$category['category']}}</option>
+										    @endforeach
 									    </select>
 									</div>
 									<div class="form-group tags-select">

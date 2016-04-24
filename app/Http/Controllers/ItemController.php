@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Items;
 use App\Ic_relations;
 use App\Tag;
+use App\Categories;
 use App\Items_tags;
 
 use Validator;
@@ -26,7 +27,8 @@ class ItemController extends Controller{
 
     public function getCreate(){
         $tags = Tag::all();
-        return view('backend/item-create',compact('tags',$tags));
+        $categories = Categories::all();
+        return view('backend/item-create',['tags' => $tags , 'categories' => $categories ]);
     }
 
     public function postStore(Request $request){
@@ -80,8 +82,9 @@ class ItemController extends Controller{
 
     public function Edit($id){
         $tags = Tag::all();
+        $categories = Categories::all();
         $item = Items::find($id);
-        return view('backend/item-detail')->with(['item' => $item,'tags' => $tags]);
+        return view('backend/item-detail',['item' => $item,'tags' => $tags,'categories' => $categories]);
     }
 
     public function Update(Request $request, $id){

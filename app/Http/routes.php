@@ -32,7 +32,11 @@ Route::group(['middleware' => ['web']], function () {
 	    Route::get('tag/{id}/edit','TagController@Edit');
 	    Route::post('tag/{id}/update','TagController@Update');
 	    Route::controller('tag','TagController');
-	    Route::resource('category','CategoryController');
+
+	    Route::get('category/{id}/edit','CategoryController@Edit');
+	    Route::post('category/{id}/update','CategoryController@Update');
+	    Route::controller('category','CategoryController');
+
     });
 	Route::controller('/vnlady-signin','SessionController');
 	Route::controller('/','ViewController');
