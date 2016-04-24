@@ -40,7 +40,7 @@
 	<script src="/js/backend/plugins/select2.full.min.js"></script>
 
 	<script src="/js/backend/ajax/item-upload.js"></script>
-	<script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 	<script type="text/javascript">
 	    $(document).ready(function () {
 			//Initialize Select2 Elements
@@ -50,8 +50,8 @@
 	        tinymce.init({
 			    selector: '.textarea',
 			    min_height : 300,
-			    plugins: 'image,advlist,media,link,save,code,paste,textcolor,table', 
-				toolbar: 'undo redo image advlist media save link styleselect fontsizeselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+			    plugins: 'image,advlist,media,link,code,paste,textcolor,table', 
+				toolbar: 'undo redo image advlist media link styleselect fontsizeselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
 
 			});
 	    });

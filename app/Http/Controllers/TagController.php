@@ -26,8 +26,8 @@ class TagController extends Controller
     {
         $data = $request->all();
         // convert slug
-        $name_to_slug = str_replace(" ", "-", strtolower(trim($data['tag_name'])) );
-        $slug = str_replace(" ", "-", strtolower(trim($data['slug'])) );
+        $name_to_slug = str_slug($data['tag_name'], "-");
+        $slug = str_slug($data['slug'], "-");
 
         $tag = new Tag;
         $tag->tag_name = trim($data['tag_name']);
@@ -68,8 +68,8 @@ class TagController extends Controller
         $data = $request->all();
         $tag = Tag::find($id);
         // convert slug
-        $name_to_slug = str_replace(" ", "-", strtolower(trim($data['tag_name'])) );
-        $slug = str_replace(" ", "-", strtolower(trim($data['slug'])) );
+        $name_to_slug = str_slug($data['tag_name'], "-");
+        $slug = str_slug($data['slug'], "-");
 
         if ($data['tag_name'] != null) {
             $tag->tag_name = trim($data['tag_name']);
