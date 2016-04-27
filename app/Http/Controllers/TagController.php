@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Tag;
 use App\Http\Requests\TagRequest;
+use Session;
 
 class TagController extends Controller
 {
     public function getIndex()
     {
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $tags = Tag::all()->sortByDesc('created_at');
         return view('backend/tags/tag',compact('tags',$tags));
     }
@@ -59,6 +63,9 @@ class TagController extends Controller
 
     public function Edit($id)
     {
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $tag = Tag::find($id);
         return view('backend/tags/tag-edit',compact('tag',$tag));
     }

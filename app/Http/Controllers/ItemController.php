@@ -13,19 +13,23 @@ use Validator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Session;
 
 class ItemController extends Controller{
 
-    public function getIndex(Request $request){
-        if ($request->session()->has('admin')) {
-            $items = Items::all()->sortByDesc('created_at');
-            return view('backend/item')->with('items',$items);
+    public function getIndex(){
+        if (!Session::has('admin')) {
+            return redirect('/');   
         }
-        return redirect('/');
+        $items = Items::all()->sortByDesc('created_at');
+        return view('backend/item')->with('items',$items);
         
     }
 
     public function getCreate(){
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $tags = Tag::all();
         $categories = Categories::all();
         return view('backend/item-create',['tags' => $tags , 'categories' => $categories ]);
@@ -81,6 +85,9 @@ class ItemController extends Controller{
     }
 
     public function Edit($id){
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $tags = Tag::all();
         $categories = Categories::all();
         $item = Items::find($id);

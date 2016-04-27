@@ -14,7 +14,6 @@ class ViewController extends Controller{
     
     public function getIndex(){
     	$items = Items::orderBy('created_at','desc')->paginate(16);
-        // $categories = Categories::all();
     	return view('frontend/index',['items' => $items]);
     }
 
@@ -42,8 +41,7 @@ class ViewController extends Controller{
             return view('errors/404');
         }
         $items = $tag->items()->orderBy('created_at','desc')->paginate(16);
-        return view('frontend/index')->with('items',$items)
-                                     ->with('tag',$tag);
+        return view('frontend/index',['items' => $items,'tag' => $tag]);
     }
 
 }

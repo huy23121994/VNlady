@@ -8,11 +8,15 @@ use App\Http\Requests;
 use App\Categories;
 use App\Ic_relations;
 use App\Http\Requests\CategoryRequest;
+use Session;
 
 class CategoryController extends Controller
 {
     public function getIndex()
     {
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $categories = Categories::all()->sortByDesc('created_at');
         return view('backend/categories/category',compact('categories',$categories));
     }
@@ -59,6 +63,9 @@ class CategoryController extends Controller
 
     public function Edit($id)
     {
+        if (!Session::has('admin')) {
+            return redirect('/');
+        }
         $category = Categories::find($id);
         return view('backend/categories/category-edit',compact('category',$category));
     }
