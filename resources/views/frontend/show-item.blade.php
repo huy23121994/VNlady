@@ -19,6 +19,13 @@
 
 @section('css')
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-6448738734982132",
+	    enable_page_level_ads: true
+	  });
+	</script>
 @endsection
 
 @section('main')
@@ -51,13 +58,12 @@
 					<h4>{{$item['title']}}</h4>
 					<p>{{$item['created_at']}}</p>
 					<div>
-						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-								<!-- vnlaydy01 -->
-							<ins class="adsbygoogle"
-								 style="display:block"
-								 data-ad-client="ca-pub-6448738734982132"
-								 data-ad-slot="8095157000"
-								 data-ad-format="auto"></ins>
+						<!-- vnlaydy01 -->
+						<ins class="adsbygoogle"
+							 style="display:block"
+							 data-ad-client="ca-pub-6448738734982132"
+							 data-ad-slot="8095157000"
+							 data-ad-format="auto"></ins>
 						<script>
 							(adsbygoogle = window.adsbygoogle || []).push({});
 						</script>
@@ -77,8 +83,7 @@
 				  	 data-show-faces="true">
 				</div>
 				<div class="text-center" style="margin: 10px auto 30px; width: 336px; height: 280px;">
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- vnlaydy01 -->
+					<!-- vnlaydy01 -->
 					<ins class="adsbygoogle"
 						 style="display:block"
 						 data-ad-client="ca-pub-6448738734982132"
@@ -95,8 +100,7 @@
 			<!-- RIGHT CONTENT -->
 			<div class="col-sm-4 right-content">
 				<div style="padding: 25px 0">
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- vnlaydy01 -->
+					<!-- vnlaydy01 -->
 					<ins class="adsbygoogle"
 						 style="display:block"
 						 data-ad-client="ca-pub-6448738734982132"
