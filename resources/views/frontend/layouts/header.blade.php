@@ -15,7 +15,7 @@
 		      	<ul class="nav navbar-nav">
 		        	<li class=""><a href="{{url('/')}}" onclick="ga('send', {'hitType': 'event', 'eventCategory': 'Header Click', 'eventAction': 'Click', 'eventLabel': 'Home'});">Home</a></li>
 		        	@foreach($categories as $category)
-		        		<li category="{{$category['id']}}"><a href="{{url('category/'.$category['id'])}}" onclick="ga('send', {'hitType': 'event', 'eventCategory': 'Category Click', 'eventAction': 'Click', 'eventLabel': '{{$category['category']}}'});">{{$category['category']}}</a></li>		        		
+		        		<li category="{{$category['id']}}"><a href="{{url('category/'.$category['slug'])}}" onclick="ga('send', {'hitType': 'event', 'eventCategory': 'Category Click', 'eventAction': 'Click', 'eventLabel': '{{$category['category']}}'});">{{$category['category']}}</a></li>		        		
 		        	@endforeach
 		      	</ul>
 	    	</div>

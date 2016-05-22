@@ -18,7 +18,7 @@
 					<p>
 						<i class="fa fa-folder-open"></i> :
 						@foreach($item->categories as $category)
-							<a href="{{url('category/'.$category['id'])}}">
+							<a href="{{url('category/'.$category['slug'])}}">
 								{{$category['category']}}
 							</a>
 						@endforeach

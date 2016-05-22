@@ -26,8 +26,8 @@ class ViewController extends Controller{
         return view('frontend/show-item',['item' => $item]);
     }
 
-    public function getCategory($id){
-        $category = Categories::find($id);
+    public function getCategory($slug){
+        $category = Categories::where('slug',$slug)->first();
         if (!$category) {
             return view('errors/404');
         }

@@ -118,7 +118,7 @@
 					<h5>Category</h5>
 					<p>
 					@foreach($item->categories as $category)
-						<a href="{{url('category/'.$category['id'])}}">{{$category['category']}} </a>
+						<a href="{{url('category/'.$category['slug'])}}">{{$category['category']}} </a>
 					@endforeach
 					</p>
 				</div>
