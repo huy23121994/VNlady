@@ -9,12 +9,12 @@
 		<div class="grid-item col-md-3 col-sm-4 col-xs-6">
 			<div class="wrapper">
 				<div class="img">
-					<a href="{{url('/item/'.$item['id'])}}">
+					<a href="{{url('/item/'.$item['slug'])}}">
 						<img src="{{$item['img_preview']}}" alt="{{$item['title']}}">
 					</a>
 				</div>
 				<div class="content">
-					<h5><a href="{{url('/item/'.$item['id'])}}">{{$item['title']}}</a></h5>
+					<h5><a href="{{url('/item/'.$item['slug'])}}">{{$item['title']}}</a></h5>
 					<p>
 						<i class="fa fa-folder-open"></i> :
 						@foreach($item->categories as $category)

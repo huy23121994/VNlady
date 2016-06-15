@@ -93,7 +93,7 @@
 						(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
 				</div>
-				<div class="fb-comments" data-href="{{url('/item/'.$item['id'])}}" data-width="100%" data-numposts="5"></div>
+				<div class="fb-comments" data-href="{{url('/item/'.$item['slug'])}}" data-width="100%" data-numposts="5"></div>
 			</div>
 			<!-- END LEFT CONTENT -->
 
@@ -138,12 +138,12 @@
 						@foreach($items_relate as $item_relate)
 						<div class="media">
 						  	<div class="media-left">
-						    	<a href="{{url('/item/'.$item_relate['id'])}}">
+						    	<a href="{{url('/item/'.$item_relate['slug'])}}">
 						      		<img class="media-object" src="{{$item_relate['img_preview']}}" alt="{{$item_relate['title']}}" width="100">
 						    	</a>
 						  	</div>
 						  	<div class="media-body">
-							  	<a href="{{url('/item/'.$item_relate['id'])}}">
+							  	<a href="{{url('/item/'.$item_relate['slug'])}}">
 							    	<h5 class="media-heading">{{$item_relate['title']}}</h5>
 						    	</a>
 						  	</div>

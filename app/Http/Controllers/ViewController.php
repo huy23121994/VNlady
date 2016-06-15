@@ -17,8 +17,8 @@ class ViewController extends Controller{
     	return view('frontend/index',['items' => $items]);
     }
 
-    public function getItem($id){
-    	$item = Items::find($id);
+    public function getItem($slug){
+    	$item = Items::where('slug',$slug)->first();
     	if (!$item) {
     		return view('errors/404');
     	}

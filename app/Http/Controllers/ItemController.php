@@ -64,6 +64,9 @@ class ItemController extends Controller{
             $item->user_id = $request->session()->get('admin')['id'];
             $item->save();
 
+            $item->slug = $item->id.'-'.str_slug($item->title);
+            $item->save();
+
             foreach ($data['categories'] as $key => $category) {
                 $relation = new Ic_relations;
                 $relation->item_id = $item['id'];
@@ -112,6 +115,7 @@ class ItemController extends Controller{
         }else{
             $item = Items::find($id);
             $item->title = $data['title'];
+            $item->slug = $item->id.'-'.str_slug($data['title']);
             $item->description = $data['description'];
             $item->embed_link = $data['embed_link'];
             $item->content = $data['content'];
